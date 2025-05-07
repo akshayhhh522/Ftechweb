@@ -59,7 +59,7 @@ export default function Home() {
     },
   ];
 
-  const [expandedFaq, setExpandedFaq] = useState(null);
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   const [showForm, setShowForm] = useState(false);
 
   function toggleFaq(index: number) {
@@ -69,7 +69,10 @@ export default function Home() {
   return (
     <main className="bg-background min-h-screen">
       {/* Hero Section */}
-      <section className="relative text-primary-foreground py-12 md:py-16 bg-primary">
+      <section
+        className="relative text-primary-foreground py-12 md:py-16 bg-primary bg-cover bg-center"
+        style={{ backgroundImage: "url('/177.png')" }}
+      >
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">Write Off Up to 81% of Your Debts</h1>
           <p className="text-base md:text-lg mb-6">
@@ -107,43 +110,46 @@ export default function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-12 md:py-16 bg-primary text-primary-foreground rounded-xl shadow-lg mx-4 md:mx-8 my-6 md:my-8">
+      <section
+        className="py-12 md:py-16 bg-primary text-primary-foreground rounded-xl shadow-lg mx-4 md:mx-8 my-6 md:my-8 bg-cover bg-center"
+        style={{ backgroundImage: "url('/1690.jpg')" }}
+      >
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-2xl md:text-3xl font-bold">Deal with your debt today. Feel better tomorrow.</h2>
           <p className="mt-4 mb-8 text-base md:text-lg">
             Taking care of debt is a big deal, so we've broken it down into small steps.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {/* Step 1 */}
-            <div className="p-4 md:p-6 bg-background text-foreground rounded-md shadow-md text-center space-y-3 md:space-y-4 hover:shadow-lg hover:scale-105 transition-transform duration-300">
-              <div className="w-12 h-12 md:w-16 md:h-16 mx-auto flex items-center justify-center border-4 border-primary rounded-full text-primary text-xl md:text-2xl font-bold">
-                1
-              </div>
-              <h3 className="text-lg md:text-xl font-bold">Answer a few quick questions</h3>
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                Use our easy online questionnaire to provide a few details about yourself and find out how much you can write off.
-              </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {/* Step 1 */}
+          <div className="p-4 md:p-6 bg-background text-foreground rounded-md shadow-md text-center space-y-3 md:space-y-4 hover:shadow-lg hover:scale-105 transition-transform duration-300">
+            <div className="w-12 h-12 md:w-16 md:h-16 mx-auto flex items-center justify-center rounded-full text-primary text-xl md:text-2xl font-bold">
+              1
             </div>
-            {/* Step 2 */}
-            <div className="p-4 md:p-6 bg-background text-foreground rounded-md shadow-md text-center space-y-3 md:space-y-4 hover:shadow-lg hover:scale-105 transition-transform duration-300">
-              <div className="w-12 h-12 md:w-16 md:h-16 mx-auto flex items-center justify-center border-4 border-primary rounded-full text-primary text-xl md:text-2xl font-bold">
-                2
-              </div>
-              <h3 className="text-lg md:text-xl font-bold">Speak to a debt specialist</h3>
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                An advisor at UK Debt Expert, the debt advice arm of The Creditfix Group, will explain all of the available options on your free debt advice call.
-              </p>
+            <h3 className="text-lg md:text-xl font-bold">Answer a few quick questions</h3>
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+              Use our easy online questionnaire to provide a few details about yourself and find out how much you can write off.
+            </p>
+          </div>
+          {/* Step 2 */}
+          <div className="p-4 md:p-6 bg-background text-foreground rounded-md shadow-md text-center space-y-3 md:space-y-4 hover:shadow-lg hover:scale-105 transition-transform duration-300">
+            <div className="w-12 h-12 md:w-16 md:h-16 mx-auto flex items-center justify-center rounded-full text-primary text-xl md:text-2xl font-bold">
+              2
             </div>
-            {/* Step 3 */}
-            <div className="p-4 md:p-6 bg-background text-foreground rounded-md shadow-md text-center space-y-3 md:space-y-4 hover:shadow-lg hover:scale-105 transition-transform duration-300">
-              <div className="w-12 h-12 md:w-16 md:h-16 mx-auto flex items-center justify-center border-4 border-primary rounded-full text-primary text-xl md:text-2xl font-bold">
-                3
-              </div>
-              <h3 className="text-lg md:text-xl font-bold">Choose your plan</h3>
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                You will be given a recommendation based on your situation and you can choose the best fit for your circumstances and lifestyle.
-              </p>
+            <h3 className="text-lg md:text-xl font-bold">Speak to a debt specialist</h3>
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+              An advisor at UK Debt Expert, the debt advice arm of The Creditfix Group, will explain all of the available options on your free debt advice call.
+            </p>
+          </div>
+          {/* Step 3 */}
+          <div className="p-4 md:p-6 bg-background text-foreground rounded-md shadow-md text-center space-y-3 md:space-y-4 hover:shadow-lg hover:scale-105 transition-transform duration-300">
+            <div className="w-12 h-12 md:w-16 md:h-16 mx-auto flex items-center justify-center rounded-full text-primary text-xl md:text-2xl font-bold">
+              3
             </div>
+            <h3 className="text-lg md:text-xl font-bold">Choose your plan</h3>
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+              You will be given a recommendation based on your situation and you can choose the best fit for your circumstances and lifestyle.
+            </p>
           </div>
         </div>
       </section>

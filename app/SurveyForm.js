@@ -293,6 +293,18 @@ function SurveyForm() {
                 <span className="ml-2">No Obligation</span>
               </div>
             </div>
+
+            {/* WhatsApp Chat Button */}
+            <div className="mt-6">
+              <a
+                href="https://wa.me/916362966603?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-6 py-3 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 transition-colors"
+              >
+                Chat with us on WhatsApp
+              </a>
+            </div>
           </div>
         )}
       </form>

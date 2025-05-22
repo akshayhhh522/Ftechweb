@@ -2,10 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
+  --background-start-rgb: 245, 246, 250; /* Updated to #f5f6fa */
+  --background-end-rgb: 245, 246, 250; /* Updated to #f5f6fa */
 }
 
 body {
@@ -15,48 +19,49 @@ body {
 
 @layer base {
   :root {
-    --background: 0 0% 100%; /* White background */
+    --background: 240 6% 96%; /* #f5f6fa */
     --foreground: 222.2 84% 4.9%; /* Dark text */
-    --card: 0 0% 100%;
+    --card: 240 6% 96%; /* #f5f6fa */
     --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
+    --popover: 240 6% 96%; /* #f5f6fa */
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 164 35% 52%; /* New primary color #58B19F */
-    --primary-foreground: 210 40% 98%; /* Text on primary color - likely white/light */
+    --primary: 240 6% 96%; /* #f5f6fa */
+    --primary-foreground: 222.2 84% 4.9%; /* Ensure contrast with new primary */
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
+    --accent: 210 40% 96.1%; /* Consider updating for new theme */
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 164 35% 52%; /* Ring color matching primary */
+    --ring: 222.2 84% 4.9%; /* Ring color, ensure contrast */
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Assuming dark mode should contrast with the new light theme */
+    --background: 222.2 84% 4.9%; /* Dark background for dark mode */
+    --foreground: 210 40% 98%; /* Light text for dark mode */
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 164 35% 52%; /* New primary color #58B19F */
-    --primary-foreground: 222.2 47.4% 11.2%; /* Text on primary color - likely dark */
+    --primary: 222.2 84% 4.9%; /* Dark primary for dark mode */
+    --primary-foreground: 210 40% 98%; /* Light text on dark primary */
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 217.2 32.6% 17.5%; /* Consider updating for new theme */
     --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 164 35% 52%; /* Ring color matching primary */
+    --ring: 210 40% 98%; /* Ring color for dark mode */
   }
 }
 

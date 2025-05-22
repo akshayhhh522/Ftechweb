@@ -2,12 +2,15 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { Menu, X } from "lucide-react"
+import { Menu, X, MessageCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 interface NavItem {
   label: string
   href: string
+  icon?: React.ElementType
+  target?: string
+  rel?: string
 }
 
 const navItems: NavItem[] = [
@@ -15,7 +18,7 @@ const navItems: NavItem[] = [
   { label: "About Us", href: "#" },
   { label: "Customer Stories", href: "#" },
   { label: "Tips & Advice", href: "#" },
-  { label: "Contact Us", href: "#" },
+  { label: "Contact Us", href: "https://wa.me/916362966603?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services.", icon: MessageCircle, target: "_blank", rel: "noopener noreferrer" },
 ]
 
 export default function MobileMenu() {
@@ -38,9 +41,12 @@ export default function MobileMenu() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="py-2 text-gray-700 hover:text-green-700 font-medium"
+                className="py-2 text-gray-700 hover:text-green-700 font-medium flex items-center"
                 onClick={() => setIsOpen(false)}
+                target={item.target}
+                rel={item.rel}
               >
+                {item.icon && <item.icon className="mr-2 h-4 w-4" />}
                 {item.label}
               </Link>
             ))}

@@ -4,10 +4,10 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import TrustpilotRating from "@/components/trustpilot-rating";
 import Link from "next/link";
-import Image from "next/image";
 import MobileMenu from "@/components/mobile-menu";
 import { cn } from "@/lib/utils";
 import { MessageCircle } from "lucide-react"; // Changed from Phone to MessageCircle for WhatsApp
+import Logo from "@/components/ui/Logo"; // Import the new Logo component
 
 // Initialize fonts
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
@@ -42,19 +42,9 @@ export default function RootLayout({
           <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 px-6 md:px-12 py-4" role="banner">
             <div className="max-w-7xl mx-auto flex justify-between items-center">
               <div className="flex items-center gap-2">
-                {/* Placeholder SVG Logo */}
-                <svg
-                  className="h-8 w-auto"
-                  viewBox="0 0 100 40"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="currentColor" // Or a specific color like #10B981 (emerald-600)
-                >
-                  <rect width="100" height="40" rx="8" fill="#374151" /> {/* bg-gray-700 */}
-                  <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fontSize="16" fill="white" fontWeight="bold">
-                    LOGO
-                  </text>
-                  <title>Finovate</title>
-                </svg>
+                <Link href="/">
+                  <Logo className="h-12 w-auto" /> {/* Use the new Logo component */}
+                </Link>
               </div>
               <nav
                 className="hidden md:flex gap-8 text-sm md:text-base font-medium text-gray-800"

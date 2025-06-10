@@ -7,6 +7,7 @@ import MobileMenu from "@/components/mobile-menu";
 import { cn } from "@/lib/utils";
 import { MessageCircle } from "lucide-react"; // Changed from Phone to MessageCircle for WhatsApp
 import Logo from "@/components/ui/Logo"; // Import the new Logo component
+import Image from "next/image"; // Import the Image component
 
 // Initialize fonts
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
@@ -96,6 +97,22 @@ export default function RootLayout({
               {children}
             </main>
           </div>
+          {/* Floating WhatsApp Icon */}
+          <Link
+            href="https://wa.me/916362966603?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="fixed bottom-8 right-8 z-50 shadow-lg hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+            aria-label="Chat on WhatsApp"
+          >
+            <Image
+              src="/whatsapp-icon-png.png"
+              alt="WhatsApp Icon"
+              width={56}
+              height={56}
+              className="h-14 w-14"
+            />
+          </Link>
         </ThemeProvider>
       </body>
     </html>

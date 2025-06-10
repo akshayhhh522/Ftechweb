@@ -24,11 +24,8 @@ const FinovateHeroSection = () => {
             </p>
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Button
-                className="bg-heroButtonPrimary text-white rounded-full px-6 py-3 shadow hover:bg-heroButtonPrimaryHover transition hover:scale-105"
-                // onClick={() => console.log("Primary CTA clicked")} // Example action
-              >
-                Get Started Now
+              <Button asChild className="bg-heroButtonPrimary text-white rounded-full px-6 py-3 shadow hover:bg-heroButtonPrimaryHover transition hover:scale-105">
+                <a href="#debt-form">Get Started Now</a>
               </Button>
               <Button
                 variant="outline" // Assuming your Button component can take a variant or you style directly

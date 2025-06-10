@@ -119,14 +119,14 @@ export default function Home() {
             <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
               Take the first step towards a brighter financial future. Our experts are here to guide you with personalized advice and effective solutions.
             </p>
-            <Button className="bg-heroButtonPrimary text-white rounded-full px-8 py-3 text-lg font-medium hover:bg-heroButtonPrimaryHover shadow-md transform transition-all duration-300 hover:scale-105">
-              Get Started Today
+            <Button asChild className="bg-heroButtonPrimary text-white rounded-full px-8 py-3 text-lg font-medium hover:bg-heroButtonPrimaryHover shadow-md transform transition-all duration-300 hover:scale-105">
+              <a href="#debt-form">Get Started Today</a>
             </Button>
           </div>
         </div>
       </section>
       
-      <DebtAdviceSection /> {/* Review and restyle this section as needed */}
+      <DebtAdviceSection id="debt-form" /> {/* Review and restyle this section as needed */}
 
       {/* Footer - New Design */}
       <footer className="bg-heroButtonPrimary text-gray-200 py-12 px-4 md:px-8">

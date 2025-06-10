@@ -204,7 +204,7 @@ const DebtAdviceSection = () => {
   ];
 
   return (
-    <section className="bg-[#f5f6fa] py-16 px-4 md:px-12">
+    <section id="debt-form" className="bg-[#f5f6fa] py-16 px-4 md:px-12">
       <div className="max-w-7xl mx-auto md:flex md:gap-12 md:items-start">
         {/* Form Panel: Applied container wrapper styles */}
         <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md mx-auto space-y-6 mb-12 md:mb-0 md:mx-0">

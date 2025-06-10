@@ -20,7 +20,9 @@ const creditorTypes = [
 ];
 
 const DebtAdviceSection = () => {
-  const [contactInfo, setContactInfo] = useState("");
+  // const [contactInfo, setContactInfo] = useState(""); // Remove old state
+  const [email, setEmail] = useState(""); // New state for email
+  const [phoneNumber, setPhoneNumber] = useState(""); // New state for phone number
   const [debtAmount, setDebtAmount] = useState("");
   const [name, setName] = useState("");
   const [selectedCreditors, setSelectedCreditors] = useState<string[]>([]);
@@ -38,15 +40,20 @@ const DebtAdviceSection = () => {
 
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
-    if (!contactInfo) {
-      newErrors.contactInfo = "Email or phone number is required.";
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^\+?[0-9\s()-]{7,}$/;
+
+    if (!email && !phoneNumber) {
+      newErrors.contactInfo = "Please provide an email or phone number.";
     } else {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      const phoneRegex = /^\+?[0-9\s()-]{7,}$/;
-      if (!emailRegex.test(contactInfo) && !phoneRegex.test(contactInfo)) {
-        newErrors.contactInfo = "Please enter a valid email or phone number.";
+      if (email && !emailRegex.test(email)) {
+        newErrors.email = "Please enter a valid email address.";
+      }
+      if (phoneNumber && !phoneRegex.test(phoneNumber)) {
+        newErrors.phoneNumber = "Please enter a valid phone number.";
       }
     }
+
     if (!debtAmount) {
       newErrors.debtAmount = "Debt amount is required.";
     } else if (isNaN(Number(debtAmount))) {
@@ -112,15 +119,23 @@ const DebtAdviceSection = () => {
     });
     const timestampIST = `${day}/${month}/${year}, ${hour}:${minute}:${second} ${dayPeriod}`;
 
-    // Map selected creditor IDs to their labels for submission
     const selectedCreditorLabels = selectedCreditors.map((id) => {
       const creditor = creditorTypes.find((c) => c.id === id);
-      return creditor ? creditor.label : id; // Fallback to ID if label not found
+      return creditor ? creditor.label : id;
     });
+
+    let combinedContactInfo = "";
+    if (email && phoneNumber) {
+      combinedContactInfo = `Email: ${email}, Phone: ${phoneNumber}`;
+    } else if (email) {
+      combinedContactInfo = `Email: ${email}`;
+    } else if (phoneNumber) {
+      combinedContactInfo = `Phone: ${phoneNumber}`;
+    }
 
     const formData = {
       TimestampIST: timestampIST,
-      ContactInfo: contactInfo,
+      ContactInfo: combinedContactInfo, // Use combined contact info
       TotalDebts: debtAmount, // Use debtAmount state
       Name: name,
       CreditorTypes: selectedCreditorLabels.join(", "),
@@ -144,7 +159,9 @@ const DebtAdviceSection = () => {
 
       setStatus("Thank you for your enquiry! We will be in touch shortly.");
       // Reset form fields
-      setContactInfo("");
+      // setContactInfo(""); // Remove old reset
+      setEmail("");
+      setPhoneNumber("");
       setDebtAmount("");
       setName("");
       setSelectedCreditors([]);
@@ -211,42 +228,63 @@ const DebtAdviceSection = () => {
           {/* Hide form on successful submission, show if error or no status */}
           {(!status || status.startsWith("Error:")) && (
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Section: Contact Information */}
-              <section>
-                {/* Section Title: Applied typography styles - not explicitly requested for this one, but good for consistency */}
-                {/* <h3 className="text-lg font-semibold text-[#1B4D3E] mb-2">Contact Information</h3> */}
-                <div className="flex flex-col space-y-1">
+              {/* Section: Contact Information - Modified */}
+              <section className="space-y-4">
+                <div>
                   <Label
-                    htmlFor="contactInfo"
-                    // Label: Applied typography styles
+                    htmlFor="email"
                     className="text-sm md:text-base text-gray-700 font-medium"
                   >
-                    Email or Phone Number
+                    Email Address
                   </Label>
                   <Input
-                    id="contactInfo"
-                    type="text"
-                    placeholder="Enter your email or phone number"
-                    value={contactInfo}
-                    onChange={(e) => setContactInfo(e.target.value)}
-                    // Input: Applied input field design
+                    id="email"
+                    type="email"
+                    placeholder="Enter your email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     className={`w-full bg-[#f5f6fa] border ${
-                      errors.contactInfo ? "border-red-500" : "border-gray-300"
+                      errors.email ? "border-red-500" : "border-gray-300"
                     } rounded-lg px-4 py-3 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500`}
-                    aria-describedby={
-                      errors.contactInfo ? "contactInfoError" : undefined
-                    }
-                    aria-label="Email or Phone Number"
+                    aria-describedby={errors.email ? "emailError" : undefined}
+                    aria-label="Email Address"
                   />
-                  {errors.contactInfo && (
-                    <p
-                      id="contactInfoError"
-                      className="text-red-500 text-xs mt-1"
-                    >
-                      {errors.contactInfo}
+                  {errors.email && (
+                    <p id="emailError" className="text-red-500 text-xs mt-1">
+                      {errors.email}
                     </p>
                   )}
                 </div>
+                <div>
+                  <Label
+                    htmlFor="phoneNumber"
+                    className="text-sm md:text-base text-gray-700 font-medium"
+                  >
+                    Phone Number
+                  </Label>
+                  <Input
+                    id="phoneNumber"
+                    type="tel"
+                    placeholder="Enter your phone number"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    className={`w-full bg-[#f5f6fa] border ${
+                      errors.phoneNumber ? "border-red-500" : "border-gray-300"
+                    } rounded-lg px-4 py-3 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-500`}
+                    aria-describedby={errors.phoneNumber ? "phoneNumberError" : undefined}
+                    aria-label="Phone Number"
+                  />
+                  {errors.phoneNumber && (
+                    <p id="phoneNumberError" className="text-red-500 text-xs mt-1">
+                      {errors.phoneNumber}
+                    </p>
+                  )}
+                </div>
+                {errors.contactInfo && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.contactInfo} {/* For the general error if neither is filled */}
+                  </p>
+                )}
               </section>
 
               {/* Section: Debt Details */}

@@ -2,7 +2,6 @@ import type React from "react";
 import { Inter, Open_Sans, Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import TrustpilotRating from "@/components/trustpilot-rating";
 import Link from "next/link";
 import MobileMenu from "@/components/mobile-menu";
 import { cn } from "@/lib/utils";
@@ -47,7 +46,7 @@ export default function RootLayout({
                 </Link>
               </div>
               <nav
-                className="hidden md:flex gap-8 text-sm md:text-base font-medium text-gray-800"
+                className="hidden md:flex items-center gap-8 text-sm md:text-base font-medium text-gray-800"
                 aria-label="Main navigation"
               >
                 <Link
@@ -61,12 +60,6 @@ export default function RootLayout({
                   className="hover:text-emerald-700 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 rounded"
                 >
                   About Us
-                </Link>
-                <Link
-                  href="/#customer-stories"
-                  className="hover:text-emerald-700 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 rounded"
-                >
-                  Customer Stories
                 </Link>
                 <Link
                   href="/#faq-section"
@@ -84,20 +77,6 @@ export default function RootLayout({
                 </Link>
               </nav>
               <div className="hidden md:flex items-center gap-6">
-                <div className="text-right">
-                  <div className="font-bold text-gray-800">25K Reviews</div>
-                  <a href="#" className="text-emerald-600 underline text-sm hover:text-emerald-800 transition-colors">
-                    View on Trustpilot
-                  </a>
-                  <div className="flex justify-end mt-1">
-                    {/* Star Icons - Placeholder SVGs. Replace with actual Heroicons or your preferred SVG icons */}
-                    {[...Array(5)].map((_, i) => (
-                      <svg key={i} className="w-4 h-4 text-green-500 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                      </svg>
-                    ))}
-                  </div>
-                </div>
                 <button className="bg-emerald-700 text-white px-4 py-2 rounded-full hover:bg-emerald-800 shadow-md transition-colors text-sm font-medium">
                   Get Started
                 </button>

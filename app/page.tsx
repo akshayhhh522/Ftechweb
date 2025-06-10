@@ -128,32 +128,51 @@ export default function Home() {
       
       <DebtAdviceSection /> {/* Review and restyle this section as needed */}
 
-      {/* Footer */}
-      <footer className="py-6 md:py-8 bg-muted text-muted-foreground">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-xs md:text-sm">
-            © 2025 {'<your company>'}. All rights reserved.
-          </p>
-          <div className="mt-4">
-            <Link
-              href="#"
-              className="text-xs md:text-sm text-muted-foreground hover:text-primary mx-2"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="#"
-              className="text-xs md:text-sm text-muted-foreground hover:text-primary mx-2"
-            >
-              Terms of Service
-            </Link>
-            <Link
-              href="#"
-              className="text-xs md:text-sm text-muted-foreground hover:text-primary mx-2"
-            >
-              Contact Us
-            </Link>
+      {/* Footer - New Design */}
+      <footer className="bg-heroButtonPrimary text-gray-200 py-12 px-4 md:px-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Column 1: Company */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">COMPANY</h3>
+            <ul className="space-y-2">
+              <li><Link href="#" className="hover:text-white transition-colors">About Us</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Career with Us</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Blogs</Link></li>
+            </ul>
           </div>
+
+          {/* Column 2: Our Solutions */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">OUR SOLUTIONS</h3>
+            <ul className="space-y-2">
+              <li><Link href="#" className="hover:text-white transition-colors">Debt Management</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">IVA</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Bankruptcy</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Debt Consolidation</Link></li>
+            </ul>
+          </div>
+
+          {/* Column 3: Resources */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">RESOURCES</h3>
+            <ul className="space-y-2">
+              <li><Link href="#" className="hover:text-white transition-colors">Refer a Friend & Earn</Link></li>
+              <li><Link href="/#faq-section" className="hover:text-white transition-colors">Tips & Advice</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">FAQs</Link></li>
+            </ul>
+          </div>
+
+          {/* Column 4: Legal */}
+          <div>
+            <h3 className="text-lg font-semibold text-white mb-4">LEGAL</h3>
+            <ul className="space-y-2">
+              <li><Link href="#" className="hover:text-white transition-colors">Terms of Use</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+            </ul>
+          </div>
+        </div>
+        <div className="mt-12 pt-8 border-t border-gray-700 text-center text-sm">
+          <p>© 2025 Creditfix. All rights reserved.</p>
         </div>
       </footer>
     </>

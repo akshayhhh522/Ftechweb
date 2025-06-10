@@ -44,7 +44,8 @@ const FinovateHeroSection = () => {
           <div className="flex justify-center items-center">
             {/* Replace with your actual image or mockup component */}
             <Image
-              alt="Financial Mockup"
+              src="/final.jpg" // Replace with your desired image path
+              alt="Financial Mockup" // Descriptive alt text
               loading="lazy"
               width={500}
               height={400}
@@ -52,7 +53,6 @@ const FinovateHeroSection = () => {
               data-nimg={1}
               className="object-cover rounded-lg shadow-lg"
               style={{ color: "transparent" }}
-              src="/001.jpg" // Replace with your desired image path
             />
           </div>
         </div>

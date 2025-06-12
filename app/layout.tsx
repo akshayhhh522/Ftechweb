@@ -78,7 +78,7 @@ export default function RootLayout({
                 </Link>
               </nav>
               <div className="hidden md:flex items-center gap-6">
-                <button className="bg-emerald-700 text-white px-4 py-2 rounded-full hover:bg-emerald-800 shadow-md transition-colors text-sm font-medium">
+                <button className="bg-emerald-700 text-white px-4 py-5 rounded-full hover:bg-emerald-800 shadow-md transition-colors text-sm font-medium">
                   <a href="#debt-form">Get Started</a>
                 </button>
               </div>

@@ -24,15 +24,8 @@ const FinovateHeroSection = () => {
             </p>
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Button asChild className="bg-heroButtonPrimary text-white rounded-full px-6 py-3 shadow hover:bg-heroButtonPrimaryHover transition hover:scale-105">
+              <Button asChild className="bg-heroButtonPrimary text-white rounded-full px-10 py-7 text-xl font-semibold shadow hover:bg-heroButtonPrimaryHover transition hover:scale-105">
                 <a href="#debt-form">Get Started Now</a>
-              </Button>
-              <Button
-                variant="outline" // Assuming your Button component can take a variant or you style directly
-                className="bg-white border border-heroButtonSecondaryBorder text-heroButtonSecondaryText rounded-full px-6 py-3 shadow hover:bg-heroButtonSecondaryHoverBg transition hover:scale-105"
-                // onClick={() => console.log("Secondary CTA clicked")} // Example action
-              >
-                Learn More
               </Button>
             </div>
           </div>
@@ -41,14 +34,11 @@ const FinovateHeroSection = () => {
           <div className="flex justify-center items-center">
             {/* Replace with your actual image or mockup component */}
             <Image
-              src="/final.jpg" // Replace with your desired image path
-              alt="Financial Mockup" // Descriptive alt text
-              loading="lazy"
+              src="/final-Photoroom.png"
+              alt="Financial Mockup"
               width={500}
               height={400}
-              decoding="async"
-              data-nimg={1}
-              className="object-cover rounded-lg shadow-lg"
+              className="object-cover" // Removed shadow-lg, rounded-lg, etc.
               style={{ color: "transparent" }}
             />
           </div>

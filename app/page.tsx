@@ -119,7 +119,7 @@ export default function Home() {
             <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
               Take the first step towards a brighter financial future. Our experts are here to guide you with personalized advice and effective solutions.
             </p>
-            <Button asChild className="bg-heroButtonPrimary text-white rounded-full px-8 py-3 text-lg font-medium hover:bg-heroButtonPrimaryHover shadow-md transform transition-all duration-300 hover:scale-105">
+            <Button asChild className="bg-heroButtonPrimary text-white rounded-full px-10 py-7 text-xl font-semibold hover:bg-heroButtonPrimaryHover shadow-md transform transition-all duration-300 hover:scale-105">
               <a href="#debt-form">Get Started Today</a>
             </Button>
           </div>
@@ -131,24 +131,21 @@ export default function Home() {
       {/* Footer - New Design */}
       <footer className="bg-heroButtonPrimary text-gray-200 py-12 px-4 md:px-8">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Column 1: Company */}
+          {/* Column 1: About */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">COMPANY</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">ABOUT</h3>
             <ul className="space-y-2">
-              <li><Link href="#" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Career with Us</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Blogs</Link></li>
+              <li><Link href="/about-us" className="hover:text-white transition-colors">About Us</Link></li>
+              <li><Link href="/career-with-us" className="hover:text-white transition-colors">Career with Us</Link></li>
             </ul>
           </div>
 
-          {/* Column 2: Our Solutions */}
+          {/* Column 2: Legal */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">OUR SOLUTIONS</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">LEGAL</h3>
             <ul className="space-y-2">
-              <li><Link href="#" className="hover:text-white transition-colors">Debt Management</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">IVA</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Bankruptcy</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Debt Consolidation</Link></li>
+              <li><Link href="/terms-of-use" className="hover:text-white transition-colors">Terms of Use</Link></li>
+              <li><Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
 
@@ -156,23 +153,20 @@ export default function Home() {
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">RESOURCES</h3>
             <ul className="space-y-2">
-              <li><Link href="#" className="hover:text-white transition-colors">Refer a Friend & Earn</Link></li>
-              <li><Link href="/#faq-section" className="hover:text-white transition-colors">Tips & Advice</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">FAQs</Link></li>
+              <li><Link href="/blogs" className="hover:text-white transition-colors">Blogs</Link></li>
             </ul>
           </div>
 
-          {/* Column 4: Legal */}
+          {/* Column 4: Refer & Earn */}
           <div>
-            <h3 className="text-lg font-semibold text-white mb-4">LEGAL</h3>
+            <h3 className="text-lg font-semibold text-white mb-4">REFER & EARN</h3>
             <ul className="space-y-2">
-              <li><Link href="#" className="hover:text-white transition-colors">Terms of Use</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/refer-a-friend" className="hover:text-white transition-colors">Refer a Friend & Earn</Link></li>
             </ul>
           </div>
         </div>
         <div className="mt-12 pt-8 border-t border-gray-700 text-center text-sm">
-          <p>© 2025 Creditfix. All rights reserved.</p>
+          <p>© 2025 DebtPlus. All rights reserved.</p>
         </div>
       </footer>
     </>

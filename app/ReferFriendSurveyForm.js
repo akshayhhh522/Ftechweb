@@ -14,6 +14,7 @@ const CREDITOR_OPTIONS = [
 
 function ReferFriendSurveyForm() {
   const [contactInfo, setContactInfo] = useState('');
+  const [contactInfoError, setContactInfoError] = useState('');
   const [totalDebts, setTotalDebts] = useState('');
   const [name, setName] = useState('');
   const [selectedCreditors, setSelectedCreditors] = useState([]);
@@ -29,11 +30,38 @@ function ReferFriendSurveyForm() {
     );
   };
 
+  // Email validation (simple)
+  const validateEmail = (email) => {
+    // Basic RFC 5322 compliant regex
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  // International phone validation (e.g. +441234567890)
+  const validatePhone = (phone) => {
+    return /^\+[0-9]{8,15}$/.test(phone);
+  };
+
+  const handleContactInfoChange = (e) => {
+    const value = e.target.value;
+    setContactInfo(value);
+    if (!validateEmail(value) && !validatePhone(value)) {
+      setContactInfoError('Please enter a valid email or phone number (with country code).');
+    } else {
+      setContactInfoError('');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setStatus("");
     setShowCreditorError(false);
+    // Validate contactInfo before submit
+    if (!validateEmail(contactInfo) && !validatePhone(contactInfo)) {
+      setContactInfoError('Please enter a valid email or phone number (with country code).');
+      setIsLoading(false);
+      return;
+    }
     if (selectedCreditors.length === 0) {
       setShowCreditorError(true);
       setIsLoading(false);
@@ -110,12 +138,15 @@ function ReferFriendSurveyForm() {
                 id="contactInfo"
                 type="text"
                 value={contactInfo}
-                onChange={(e) => setContactInfo(e.target.value)}
+                onChange={handleContactInfoChange}
                 required
                 disabled={isLoading}
-                className="w-full px-5 py-3 rounded-2xl bg-white/80 text-gray-900 placeholder-gray-400 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-heroAccent focus:border-heroAccent text-base transition shadow-sm"
+                className={`w-full px-5 py-3 rounded-2xl bg-white/80 text-gray-900 placeholder-gray-400 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-heroAccent focus:border-heroAccent text-base transition shadow-sm ${contactInfoError ? 'border-red-500' : ''}`}
                 placeholder="Enter your email or phone"
               />
+              {contactInfoError && (
+                <p className="text-xs text-red-500 mt-1">{contactInfoError}</p>
+              )}
             </div>
           </div>
           <div className="flex flex-col md:flex-row gap-6">

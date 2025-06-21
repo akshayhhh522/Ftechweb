@@ -20,6 +20,21 @@ function SurveyForm() {
   const [status, setStatus] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showCreditorError, setShowCreditorError] = useState(false);
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+
+  // Email validation: must be a valid Gmail address
+  const validateEmail = (email) => {
+    const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    return gmailRegex.test(email);
+  };
+
+  // Phone validation: must be a valid international number (e.g., +441234567890)
+  const validatePhone = (phone) => {
+    // Accepts + followed by 8 to 15 digits
+    const intlPhoneRegex = /^\+[0-9]{8,15}$/;
+    return phone === "" || intlPhoneRegex.test(phone); // allow empty (optional), or valid
+  };
 
   const handleCreditorToggle = (creditor) => {
     setSelectedCreditors(prev =>
@@ -29,13 +44,40 @@ function SurveyForm() {
     );
   };
 
+  const handleContactInfoChange = (e) => {
+    setContactInfo(e.target.value);
+    if (!validateEmail(e.target.value)) {
+      setEmailError("Please enter a valid Gmail address.");
+    } else {
+      setEmailError("");
+    }
+  };
+
+  const handlePhoneChange = (e) => {
+    setPhoneNumber(e.target.value);
+    if (!validatePhone(e.target.value)) {
+      setPhoneError("Please enter a valid phone number with country code, e.g. +441234567890");
+    } else {
+      setPhoneError("");
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setStatus("");
     setShowCreditorError(false);
-    if (selectedCreditors.length === 0) {
-      setShowCreditorError(true);
+    // Validate before submit
+    let valid = true;
+    if (!validateEmail(contactInfo)) {
+      setEmailError("Please enter a valid Gmail address.");
+      valid = false;
+    }
+    if (!validatePhone(phoneNumber)) {
+      setPhoneError("Please enter a valid phone number with country code, e.g. +441234567890");
+      valid = false;
+    }
+    if (!valid) {
       setIsLoading(false);
       return;
     }
@@ -131,22 +173,24 @@ function SurveyForm() {
               id="contactInfo"
               type="text"
               value={contactInfo}
-              onChange={(e) => setContactInfo(e.target.value)}
+              onChange={handleContactInfoChange}
               required
               disabled={isLoading}
-              className="w-full px-4 py-3 rounded-xl bg-[#f5f7fa] text-gray-900 placeholder-gray-400 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-heroAccent focus:border-heroAccent text-base transition mb-4"
+              className={`w-full px-4 py-3 rounded-xl bg-[#f5f7fa] text-gray-900 placeholder-gray-400 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-heroAccent focus:border-heroAccent text-base transition mb-1 ${emailError ? 'border-red-500' : ''}`}
               placeholder="Enter your email address"
             />
+            {emailError && <p className="text-xs text-red-500 mb-3">{emailError}</p>}
             <label htmlFor="phoneNumber" className="block text-base font-semibold text-heroHeadline mb-2">Phone Number</label>
             <input
               id="phoneNumber"
               type="text"
               value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              onChange={handlePhoneChange}
               disabled={isLoading}
-              className="w-full px-4 py-3 rounded-xl bg-[#f5f7fa] text-gray-900 placeholder-gray-400 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-heroAccent focus:border-heroAccent text-base transition mb-6"
-              placeholder="Enter your phone number"
+              className={`w-full px-4 py-3 rounded-xl bg-[#f5f7fa] text-gray-900 placeholder-gray-400 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-heroAccent focus:border-heroAccent text-base transition mb-1 ${phoneError ? 'border-red-500' : ''}`}
+              placeholder="Enter your phone number with country code (e.g. +441234567890)"
             />
+            {phoneError && <p className="text-xs text-red-500 mb-3">{phoneError}</p>}
           </div>
           <div>
             <h3 className="text-lg font-bold text-heroHeadline mb-2">Debt Details</h3>
@@ -204,7 +248,7 @@ function SurveyForm() {
           {/* Replace the native button with the custom Button component for consistent styling */}
           <Button
             type="submit"
-            disabled={isLoading || !contactInfo || !totalDebts}
+            disabled={isLoading || !contactInfo || !totalDebts || emailError || phoneError}
             className="w-full font-bold py-4 rounded-full shadow-lg mt-2 tracking-wide text-lg"
           >
             {isLoading ? (

@@ -78,9 +78,13 @@ export default function RootLayout({
                 </Link>
               </nav>
               <div className="hidden md:flex items-center gap-6">
-                <button className="bg-emerald-700 text-white px-4 py-2 rounded-full hover:bg-[#bada55] shadow-md transition-colors text-sm font-medium">
-                  <a href="#debt-advice">Get Started</a>
-                </button>
+                <Link
+                  href="/#debt-advice"
+                  scroll={false}
+                  className="bg-emerald-700 text-white px-4 py-2 rounded-full hover:bg-[#bada55] shadow-md transition-colors text-sm font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                >
+                  Get Started
+                </Link>
               </div>
               <div className="md:hidden">
                 <MobileMenu aria-label="Open navigation menu" />

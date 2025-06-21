@@ -57,19 +57,19 @@ export default function RootLayout({
                   Help with Debt
                 </Link>
                 <Link
-                  href="/#about-us"
+                  href="/about-us"
                   className="hover:text-emerald-700 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 rounded"
                 >
                   About Us
                 </Link>
                 <Link
-                  href="/#faq-section"
+                  href="/blogs"
                   className="hover:text-emerald-700 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 rounded"
                 >
                   Tips & Advice
                 </Link>
                 <Link
-                  href="https://wa.me/916362966603?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+                  href="https://wa.me/441614640828?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services."
                   className="flex items-center hover:text-emerald-700 transition-colors focus:outline-none focus:ring-2 focus:ring-emerald-500 rounded"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -78,8 +78,8 @@ export default function RootLayout({
                 </Link>
               </nav>
               <div className="hidden md:flex items-center gap-6">
-                <button className="bg-emerald-700 text-white px-4 py-5 rounded-full hover:bg-emerald-800 shadow-md transition-colors text-sm font-medium">
-                  <a href="#debt-form">Get Started</a>
+                <button className="bg-emerald-700 text-white px-4 py-2 rounded-full hover:bg-[#bada55] shadow-md transition-colors text-sm font-medium">
+                  <a href="#debt-advice">Get Started</a>
                 </button>
               </div>
               <div className="md:hidden">
@@ -99,7 +99,7 @@ export default function RootLayout({
           </div>
           {/* Floating WhatsApp Icon */}
           <Link
-            href="https://wa.me/916362966603?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+            href="https://wa.me/441614640828?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services."
             target="_blank"
             rel="noopener noreferrer"
             className="fixed bottom-8 right-8 z-50 shadow-lg hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"

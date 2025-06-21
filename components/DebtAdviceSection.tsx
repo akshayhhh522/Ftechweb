@@ -204,7 +204,7 @@ const DebtAdviceSection = () => {
   ];
 
   return (
-    <section id="debt-form" className="bg-[#f5f6fa] py-16 px-4 md:px-12">
+    <section id="debt-advice" className="bg-[#f5f6fa] py-16 px-4 md:px-12">
       <div className="max-w-7xl mx-auto md:flex md:gap-12 md:items-start">
         {/* Form Panel: Applied container wrapper styles */}
         <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md mx-auto space-y-6 mb-12 md:mb-0 md:mx-0">
@@ -386,9 +386,8 @@ const DebtAdviceSection = () => {
 
               <Button
                 type="submit"
-                disabled={isLoading} // Disable button when loading
-                // CTA Button: Applied button styles
-                className="w-full bg-[#1B4D3E] text-white text-center font-semibold py-3 rounded-full hover:bg-[#164037] transition shadow-md disabled:opacity-50"
+                disabled={isLoading}
+                className="w-full font-semibold py-3 rounded-full shadow-md"
                 aria-label="Send Enquiry"
               >
                 {isLoading ? (

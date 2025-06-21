@@ -56,7 +56,7 @@ export default function EnhancedContentSection({
       <div className="flex flex-col sm:flex-row gap-4 pt-4">
         <Link
           href={primaryCtaLink}
-          className="bg-[#1B4D3E] text-white px-6 py-3 rounded-full hover:bg-[#164037] shadow-md transition-colors text-center text-sm font-medium"
+          className="bg-[#1B4D3E] text-white px-6 py-3 rounded-full hover:bg-[#bada55] shadow-md transition-colors text-center text-sm font-medium"
         >
           {primaryCtaText}
         </Link>

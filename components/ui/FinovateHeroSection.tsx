@@ -24,8 +24,8 @@ const FinovateHeroSection = () => {
             </p>
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Button asChild className="bg-heroButtonPrimary text-white rounded-full px-10 py-7 text-xl font-semibold shadow hover:bg-heroButtonPrimaryHover transition hover:scale-105">
-                <a href="#debt-form">Get Started Now</a>
+              <Button asChild className="bg-[#bada55] text-heroHeadline rounded-full px-10 py-7 text-xl font-semibold shadow transition hover:bg-[#bada55] hover:text-heroHeadline hover:scale-105">
+                <a href="#debt-advice">Get Started Now</a>
               </Button>
             </div>
           </div>

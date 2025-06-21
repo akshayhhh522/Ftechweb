@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "@/components/ui/button";
 
 interface CalloutBannerProps {
   title: string;
@@ -17,12 +18,12 @@ const CalloutBanner: React.FC<CalloutBannerProps> = ({
     <h2 className="text-xl md:text-2xl font-semibold text-gray-800">{title}</h2>
     <p className="text-base text-gray-600 leading-relaxed">{description}</p>
     {ctaText && (
-      <button
-        className="bg-emerald-700 text-white rounded px-6 py-2 font-semibold text-sm md:text-base hover:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 shadow-md transition"
+      <Button
         onClick={onCtaClick}
+        className="font-semibold px-6 py-2 text-sm md:text-base shadow-md"
       >
         {ctaText}
-      </button>
+      </Button>
     )}
   </section>
 );

@@ -15,10 +15,10 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "Help with Debt", href: "#" },
-  { label: "About Us", href: "#" },
+  { label: "About Us", href: "/about-us" },
   { label: "Customer Stories", href: "#" },
   { label: "Tips & Advice", href: "#" },
-  { label: "Contact Us", href: "https://wa.me/916362966603?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services.", icon: MessageCircle, target: "_blank", rel: "noopener noreferrer" },
+  { label: "Contact Us", href: "https://wa.me/441614640828?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20your%20services.", icon: MessageCircle, target: "_blank", rel: "noopener noreferrer" },
 ]
 
 export default function MobileMenu() {

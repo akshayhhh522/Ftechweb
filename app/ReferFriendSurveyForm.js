@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { Button } from "../components/ui/button";
 
@@ -10,13 +12,11 @@ const CREDITOR_OPTIONS = [
   "HMRC & Other"
 ];
 
-function SurveyForm() {
+function ReferFriendSurveyForm() {
   const [contactInfo, setContactInfo] = useState('');
   const [totalDebts, setTotalDebts] = useState('');
   const [name, setName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
   const [selectedCreditors, setSelectedCreditors] = useState([]);
-  
   const [status, setStatus] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showCreditorError, setShowCreditorError] = useState(false);
@@ -53,7 +53,6 @@ function SurveyForm() {
     };
     const formatter = new Intl.DateTimeFormat('en-IN', options);
     const parts = formatter.formatToParts(now);
-    
     let day = '', month = '', year = '', hour = '', minute = '', second = '', dayPeriod = '';
     parts.forEach(part => {
       switch (part.type) {
@@ -66,92 +65,62 @@ function SurveyForm() {
         case 'dayPeriod': dayPeriod = part.value.toUpperCase(); break;
       }
     });
-
     const timestampIST = `${day}/${month}/${year}, ${hour}:${minute}:${second} ${dayPeriod}`;
-
     const formData = {
       TimestampIST: timestampIST,
-      ContactInfo: `Email: ${contactInfo}${phoneNumber ? ', Phone: ' + phoneNumber : ''}`,
+      ContactInfo: contactInfo,
       TotalDebts: totalDebts,
       Name: name,
-      CreditorTypes: selectedCreditors.join(', ') // Join array into a comma-separated string
+      CreditorTypes: selectedCreditors.join(', '),
+      Referral: true
     };
-    
-    console.log('Submitting form data:', formData);
-    
-    // IMPORTANT: Replace with your NEW Google Apps Script URL
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby7ZZtF8dFUSeA8kHZ29ouCFdyKmSYEqf0VJlbZbJeipeA5YGg81heJflfC7IsxcTyYuw/exec"; 
-    
-    if (APPS_SCRIPT_URL === "YOUR_NEW_GOOGLE_APPS_SCRIPT_URL_HERE") {
-      console.error("Please update the APPS_SCRIPT_URL in SurveyForm.js");
-      setStatus("Error: Google Apps Script URL not configured. Please contact support.");
-      setIsLoading(false);
-      return;
-    }
-
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwphDqnLgV2X9vgcYf1SXmoMdbFdcpQTB6-__J6J8HaqsnBqjlf_svv6dlhtbYVoeMenA/exec";
     try {
       const formDataUrlEncoded = new URLSearchParams(formData).toString();
-      console.log('Sending form data as URL-encoded:', formDataUrlEncoded);
-
       await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: formDataUrlEncoded,
-        mode: 'no-cors', // Keep no-cors if your script is set up for it
+        mode: 'no-cors',
       });
-      
-      console.log('Form submission completed');
       setStatus('Thank you for your enquiry! We will be in touch shortly.');
-      
-      // Reset form fields
       setContactInfo('');
       setTotalDebts('');
       setName('');
-      setPhoneNumber('');
       setSelectedCreditors([]);
-      
     } catch (error) {
-      console.error('Error submitting form:', error);
       setStatus(`Error: ${error.message || 'Something went wrong. Please try again.'}`);
     } finally {
       setIsLoading(false);
     }
   };
-  
+
   return (
-    <div className="w-full max-w-md mx-auto p-0 bg-transparent">
-      <div className="bg-white rounded-2xl shadow-lg border border-gray-100 px-6 py-8 flex flex-col gap-7">
-        <h2 className="text-2xl md:text-3xl font-bold text-heroHeadline mb-6 text-left">Get debt advice</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-          <div>
-            <label htmlFor="contactInfo" className="block text-base font-semibold text-heroHeadline mb-2">Email Address</label>
-            <input
-              id="contactInfo"
-              type="text"
-              value={contactInfo}
-              onChange={(e) => setContactInfo(e.target.value)}
-              required
-              disabled={isLoading}
-              className="w-full px-4 py-3 rounded-xl bg-[#f5f7fa] text-gray-900 placeholder-gray-400 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-heroAccent focus:border-heroAccent text-base transition mb-4"
-              placeholder="Enter your email address"
-            />
-            <label htmlFor="phoneNumber" className="block text-base font-semibold text-heroHeadline mb-2">Phone Number</label>
-            <input
-              id="phoneNumber"
-              type="text"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              disabled={isLoading}
-              className="w-full px-4 py-3 rounded-xl bg-[#f5f7fa] text-gray-900 placeholder-gray-400 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-heroAccent focus:border-heroAccent text-base transition mb-6"
-              placeholder="Enter your phone number"
-            />
+    <div className="w-full flex flex-col items-center justify-center min-h-[80vh] py-8 px-2">
+      <div className="w-full max-w-2xl bg-gradient-to-br from-[#e0ffe7] via-[#f5f7fa] to-[#e0eaff] rounded-3xl shadow-2xl border border-gray-100 px-12 py-14 flex flex-col gap-10 relative overflow-hidden">
+        <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#bada55]/30 rounded-full blur-2xl z-0" />
+        <h2 className="text-4xl md:text-5xl font-extrabold text-heroHeadline mb-2 text-center z-10 drop-shadow-sm tracking-tight">Refer a Friend</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-8 z-10">
+          <div className="flex flex-col md:flex-row gap-6">
+            <div className="flex-1">
+              <label htmlFor="contactInfo" className="block text-base font-semibold text-heroHeadline mb-2">Your email or phone (with country code)</label>
+              <input
+                id="contactInfo"
+                type="text"
+                value={contactInfo}
+                onChange={(e) => setContactInfo(e.target.value)}
+                required
+                disabled={isLoading}
+                className="w-full px-5 py-3 rounded-2xl bg-white/80 text-gray-900 placeholder-gray-400 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-heroAccent focus:border-heroAccent text-base transition shadow-sm"
+                placeholder="Enter your email or phone"
+              />
+            </div>
           </div>
-          <div>
-            <h3 className="text-lg font-bold text-heroHeadline mb-2">Debt Details</h3>
-            <label htmlFor="totalDebts" className="block text-base font-semibold text-heroHeadline mb-2">How much are your total debts?</label>
-            <div className="relative mb-4">
+          <div className="flex flex-col md:flex-row gap-6">
+            <div className="flex-1">
+              <label htmlFor="totalDebts" className="block text-base font-semibold text-heroHeadline mb-2">Friend's total debts?</label>
               <input
                 id="totalDebts"
                 type="number"
@@ -159,24 +128,26 @@ function SurveyForm() {
                 onChange={(e) => setTotalDebts(e.target.value)}
                 required
                 disabled={isLoading}
-                className="w-full px-4 pr-4 py-3 rounded-xl bg-[#f5f7fa] text-gray-900 placeholder-gray-400 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-heroAccent focus:border-heroAccent text-base transition mb-4"
+                className="w-full px-5 py-3 rounded-2xl bg-white/80 text-gray-900 placeholder-gray-400 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-heroAccent focus:border-heroAccent text-base transition shadow-sm"
                 placeholder="Amount (e.g. 5000)"
               />
             </div>
-            <label htmlFor="name" className="block text-base font-semibold text-heroHeadline mb-2">Your name (Optional)</label>
-            <input
-              id="name"
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              disabled={isLoading}
-              className="w-full px-4 py-3 rounded-xl bg-[#f5f7fa] text-gray-900 placeholder-gray-400 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-heroAccent focus:border-heroAccent text-base transition"
-              placeholder="Enter your name"
-            />
+            <div className="flex-1">
+              <label htmlFor="name" className="block text-base font-semibold text-heroHeadline mb-2">Friend's contact (Mail or Phone)</label>
+              <input
+                id="name"
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                disabled={isLoading}
+                className="w-full px-5 py-3 rounded-2xl bg-white/80 text-gray-900 placeholder-gray-400 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-heroAccent focus:border-heroAccent text-base transition shadow-sm"
+                placeholder="Enter friend's contact"
+              />
+            </div>
           </div>
           <div>
-            <h3 className="text-lg font-bold text-heroHeadline mb-2">Which types of creditors do you have?</h3>
-            <div className="flex flex-wrap gap-3 mb-6">
+            <h3 className="text-lg font-bold text-heroHeadline mb-3 text-center md:text-left">Which types of creditors does your friend have?</h3>
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start mb-2">
               {CREDITOR_OPTIONS.map((creditor) => {
                 const isSelected = selectedCreditors.includes(creditor);
                 return (
@@ -186,8 +157,8 @@ function SurveyForm() {
                     onClick={() => handleCreditorToggle(creditor)}
                     disabled={isLoading}
                     aria-pressed={isSelected}
-                    className={`px-5 py-2 rounded-full text-base font-medium border transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#bada55] focus:border-[#bada55] focus:z-10
-                      ${!isSelected ? 'bg-[#f5f7fa] text-heroHeadline border-gray-200 hover:bg-[#bada55] hover:text-heroHeadline hover:border-[#bada55]' : ''}
+                    className={`px-6 py-2 rounded-full text-base font-medium border transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[#bada55] focus:border-[#bada55] focus:z-10 shadow-sm
+                      ${!isSelected ? 'bg-white/80 text-heroHeadline border-gray-300 hover:bg-[#bada55] hover:text-heroHeadline hover:border-[#bada55]' : ''}
                       ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}
                     `}
                     style={isSelected ? { background: '#bada55', color: '#1B4D3E', borderColor: '#bada55', boxShadow: '0 2px 8px #bada5522' } : {}}
@@ -198,14 +169,14 @@ function SurveyForm() {
               })}
             </div>
             {showCreditorError && (
-              <p className="text-xs text-red-500 mt-2">Please select at least one creditor type if applicable, or proceed if none.</p>
+              <p className="text-xs text-red-500 mt-2 text-center md:text-left">Please select at least one creditor type if applicable, or proceed if none.</p>
             )}
           </div>
-          {/* Replace the native button with the custom Button component for consistent styling */}
           <Button
             type="submit"
             disabled={isLoading || !contactInfo || !totalDebts}
-            className="w-full font-bold py-4 rounded-full shadow-lg mt-2 tracking-wide text-lg"
+            className="w-full rounded-2xl py-4 text-lg font-bold mt-2 tracking-wide shadow-xl"
+            size="lg"
           >
             {isLoading ? (
               <span className="flex items-center justify-center">
@@ -230,7 +201,7 @@ function SurveyForm() {
             </div>
           )}
         </form>
-        <div className="text-center text-xs text-gray-500 mt-2">
+        <div className="text-center text-xs text-gray-500 mt-2 z-10">
           <p>Your information is secure and encrypted. We'll never share your details without permission.</p>
         </div>
       </div>
@@ -238,4 +209,4 @@ function SurveyForm() {
   );
 }
 
-export default SurveyForm;
+export default ReferFriendSurveyForm;

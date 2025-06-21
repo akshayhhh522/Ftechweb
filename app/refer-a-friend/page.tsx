@@ -1,9 +1,10 @@
 import React from "react";
+import ReferFriendSurveyForm from "../ReferFriendSurveyForm.js";
 
 export default function ReferAFriendPage() {
   return (
     <main className="max-w-3xl mx-auto py-16 px-4">
-      <h1 className="text-3xl font-bold mb-6">Refer a Friend & Earn</h1>
+      <ReferFriendSurveyForm />
       {/* Add your Refer a Friend & Earn content here */}
     </main>
   );

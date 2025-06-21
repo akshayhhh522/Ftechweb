@@ -153,7 +153,7 @@ const QualifyForm: React.FC<QualifyFormProps> = ({ onClose }) => {
                   key={creditor.id}
                   type="button" // Important: prevent form submission
                   onClick={() => handleCreditorChange(creditor.id)}
-                  className={`border px-4 py-2 rounded-full hover:bg-emerald-50 cursor-pointer text-sm
+                  className={`border px-4 py-2 rounded-full hover:bg-[#bada55] cursor-pointer text-sm
                     ${selectedCreditors.includes(creditor.id) ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-background border-gray-300 text-gray-700'}`}
                   aria-pressed={selectedCreditors.includes(creditor.id)}
                 >
@@ -166,7 +166,7 @@ const QualifyForm: React.FC<QualifyFormProps> = ({ onClose }) => {
           {/* Final CTA */}
           <Button
             type="submit"
-            className="w-full bg-[#1B4D3E] text-white font-semibold py-3 px-6 rounded-full hover:bg-[#164037] shadow transition-colors text-sm uppercase tracking-wider"
+            className="w-full font-semibold py-3 px-6 rounded-full shadow-md text-sm uppercase tracking-wider"
           >
             Send Enquiry
           </Button>
